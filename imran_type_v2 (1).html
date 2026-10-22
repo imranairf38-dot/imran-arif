@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="google-site-verification" content="ICcktqOnd4746cUn5XgHVbUNRZqrKNmxRo1yAvu1Fsg" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imran Type — Typing Test</title>
+<style>
+:root{--blue:#123b75;--blue2:#0c2b57;--gold:#e8bb35;--paper:#fff;--ink:#244064;--muted:#8190a5;--soft:#f1f5fa;--red:#d84b58;--green:#20835c}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;transition:background .2s,color .2s}
+body.dark{--paper:#0b2344;--ink:#eaf2ff;--muted:#9bb0ce;--soft:#12345f;--blue:#173f78;--blue2:#092044}
+button,input,select{font:inherit}button{border:0;cursor:pointer;border-radius:8px;padding:9px 13px;background:var(--soft);color:var(--ink)}button:hover{filter:brightness(.97)}button.active{background:var(--blue);color:#fff}input,select{border:1px solid #d7e0ec;background:var(--paper);color:var(--ink);border-radius:8px;padding:9px 10px;outline:none}input:focus,select:focus{border-color:var(--gold)}
+.shell{max-width:1050px;margin:auto;padding:24px 22px 55px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:10px;color:var(--blue);font-size:24px;font-weight:900;letter-spacing:-1px}.brandmark{width:38px;height:38px;display:grid;place-items:center;background:var(--blue);color:white;border-radius:11px;font-size:21px}.top-actions{display:flex;gap:8px;flex-wrap:wrap}
+.panel{background:var(--soft);border-radius:12px;padding:15px;margin-bottom:18px}.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.control-group{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.label{font-size:12px;color:var(--muted);margin-right:2px}.custom{display:none;align-items:center;gap:7px}.custom.show{display:flex}.custom input{width:100px}.namegate{position:fixed;inset:0;background:rgba(7,24,49,.5);backdrop-filter:blur(5px);z-index:10;display:flex;align-items:center;justify-content:center;padding:20px}.namecard{background:var(--paper);color:var(--ink);width:min(420px,100%);border-radius:18px;padding:28px;box-shadow:0 20px 70px #06162e40}.namecard h1{margin:0 0 4px;color:var(--blue);font-size:25px}.namecard p{margin:0 0 18px;color:var(--muted);font-size:13px}.namecard input{width:100%;margin-bottom:12px}.primary{background:var(--blue);color:white;width:100%;padding:12px;font-weight:700}.hidden{display:none!important}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:22px 0}.stat{background:var(--blue);color:white;border-radius:11px;padding:12px 15px}.stat span{display:block;color:#c8d8f0;font-size:12px}.stat strong{font-size:27px;font-weight:500;color:white;line-height:1.4}
+.typingbox{position:relative;min-height:230px;padding:22px;background:var(--blue);border-radius:15px;color:white;overflow:hidden;cursor:text}.typingbox:focus{outline:2px solid var(--gold);outline-offset:3px}#words{font-size:24px;line-height:1.95;letter-spacing:.1px;overflow-wrap:anywhere;user-select:none;color:#b8c9e3}.word{display:inline-block;margin-right:11px;white-space:pre}.letter{position:relative}.letter.correct{color:#fff}.letter.wrong{color:#ff9da5;text-decoration:underline;text-decoration-thickness:2px}.letter.current:before{content:"";position:absolute;left:0;top:4px;bottom:0;width:2px;background:var(--gold);animation:blink .8s steps(2,start) infinite}@keyframes blink{to{opacity:0}}
+.overlay{position:absolute;inset:0;background:rgba(10,37,75,.94);display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:18px;gap:8px}.overlay strong{font-size:27px;color:white}.overlay small{color:#d0def2;font-size:13px}.overlay button{margin-top:7px;background:var(--gold);color:#162b49;font-weight:800}.feedback{min-height:32px;margin:12px 0;color:var(--red);text-align:center;font-size:14px}.footerrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:12px}.results{margin-top:18px;padding:15px;border-radius:12px;background:var(--soft);display:none}.results.show{display:block}.results h2{margin:0 0 5px;color:var(--blue)}.good{color:var(--green);font-weight:800}.dark .good{color:#72dfb2}.tips{text-align:center;color:var(--muted);font-size:12px;margin-top:26px}
+@media(max-width:650px){.shell{padding:18px 13px}.top{align-items:flex-start;flex-direction:column}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}#words{font-size:19px}.typingbox{padding:16px;min-height:220px}.controls{align-items:flex-start}.control-group{width:100%}}
+</style>
+</head>
+<body>
+<div class="namegate" id="nameGate">
+  <form class="namecard" id="nameForm">
+    <h1>Welcome to Imran Type</h1>
+    <p>Typing test shuru karne se pehle apna naam likhein.</p>
+    <input id="userName" maxlength="30" autocomplete="given-name" placeholder="Aap ka naam..." required>
+    <button class="primary" type="submit">Start typing test →</button>
+  </form>
+</div>
+<div class="shell">
+  <header class="top">
+    <div class="brand"><div class="brandmark">⌨</div><span>imran<span style="color:var(--gold)">type</span></span></div>
+    <div class="top-actions"><button id="voiceBtn" class="active">🔊 Voice: on</button><button id="sfxBtn" class="active">🎧 ASMR SFX: on</button><button id="themeBtn">◐ White / Dark Blue</button><button id="restartTop">↻ Restart</button></div>
+  </header>
+
+  <section class="panel">
+    <div class="controls">
+      <div class="control-group"><span class="label">TEST TYPE</span><button class="typeBtn active" data-type="time">Timing</button><button class="typeBtn" data-type="words">Words</button></div>
+      <div class="control-group" id="timeChoices"><span class="label">TIME</span><button class="timeBtn" data-seconds="15">15s</button><button class="timeBtn active" data-seconds="30">30s</button><button class="timeBtn" data-seconds="60">60s</button><button class="timeBtn" data-seconds="120">120s</button><span class="custom show" id="customTime"><input id="timeInput" type="number" min="1" max="3600" value="30" aria-label="Custom seconds"><button id="applyTime">Set seconds</button></span></div>
+      <div class="control-group" id="wordChoices"><span class="label">WORD COUNT</span><button class="wordBtn" data-count="10">10</button><button class="wordBtn active" data-count="25">25</button><button class="wordBtn" data-count="50">50</button><button class="wordBtn" data-count="100">100</button><span class="custom show"><input id="wordInput" type="number" min="1" max="1000" value="25" aria-label="Custom word count"><button id="applyWords">Set words</button></span></div>
+      <div class="control-group"><span class="label">DIFFICULTY</span><button class="diffBtn active" data-diff="easy">Easy</button><button class="diffBtn" data-diff="hard">Hard</button></div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><span>WPM</span><strong id="wpm">0</strong></div>
+    <div class="stat"><span>ACCURACY</span><strong id="accuracy">100%</strong></div>
+    <div class="stat"><span id="clockLabel">TIME LEFT</span><strong id="clock">30s</strong></div>
+    <div class="stat"><span>MISTAKES</span><strong id="mistakes">0</strong></div>
+  </section>
+
+  <section class="typingbox" id="typingBox" tabindex="0" aria-label="Typing text">
+    <div id="words"></div>
+    <div class="overlay" id="overlay"><strong id="overlayTitle">Shift to start</strong><small id="overlaySub">Shift key dabao — typing shuru hogi.</small><button id="overlayButton">Start test</button></div>
+  </section>
+  <div class="feedback" id="feedback" aria-live="polite"></div>
+  <div style="text-align:center;color:var(--muted);font-size:12px;margin:-5px 0 14px">Voice artist browser ki available voice use karega. Pehli baar sound chalane ke liye button ya Shift dabana zaroori ho sakta hai.</div>
+  <div class="results" id="results"><h2 id="resultTitle">You are best!</h2><div id="resultDetails"></div></div>
+  <div class="footerrow"><span>SHIFT = start · Backspace disabled · Alphabet keys only</span><button id="restart">↻ Restart test</button></div>
+  <div class="tips">White aur dark blue theme · Easy aur hard words · Apni timing ya word count set karein</div>
+</div>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const easyBank = "the and you are can see run sun cat dog book home tree good kind make play happy small water light friend smile world dream learn work time day blue quick green apple chair paper music story".split(" ");
+  const hardBank = "ambiguous perseverance extraordinary conscientious juxtaposition inevitable meticulous resilience phenomenon sophisticated quintessential labyrinthine ephemeral ubiquitous eloquence paradigm tenacious serendipity magnanimous".split(" ");
+  const punctuation = [",", ".", "!", "?", ";", ":"];
+  let name = "", testType = "time", difficulty = "easy", seconds = 30, wordCount = 25;
+  let targetWords = [], target = "", typed = "", started = false, finished = false, startAt = 0, remaining = 30, timer = null, mistakes = 0, correctChars = 0, totalTyped = 0;
+  let voiceOn = true, sfxOn = true, audioCtx = null, lastSpoken = "";
+  function speak(text) {
+    if (!voiceOn || !("speechSynthesis" in window) || !text || text === lastSpoken) return;
+    lastSpoken = text;
+    try {
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "en-US"; utter.rate = 0.94; utter.pitch = 0.92; utter.volume = 1;
+      const voices = window.speechSynthesis.getVoices();
+      const preferred = voices.find(v => /en-US/i.test(v.lang) && /female|zira|samantha|aria/i.test(v.name)) || voices.find(v => /en/i.test(v.lang));
+      if (preferred) utter.voice = preferred;
+      window.speechSynthesis.speak(utter);
+    } catch (_) {}
+  }
+  function sound(kind) {
+    if (!sfxOn) return;
+    try {
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+      osc.type = kind === "error" ? "triangle" : "sine";
+      osc.frequency.value = kind === "error" ? 190 : kind === "start" ? 520 : 680;
+      gain.gain.setValueAtTime(kind === "error" ? .035 : .018, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(.001, audioCtx.currentTime + (kind === "error" ? .18 : .07));
+      osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + .2);
+    } catch (_) {}
+  }
+  function showFeedback(text, say = true, kind = "tap") {
+    $("feedback").textContent = text;
+    if (say) speak(text);
+    sound(kind);
+  }
+
+  function randomWords(n) {
+    const bank = difficulty === "easy" ? easyBank : hardBank;
+    const arr = [];
+    for (let i=0; i<n; i++) {
+      const w = bank[Math.floor(Math.random()*bank.length)];
+      arr.push(w);
+    }
+    return arr;
+  }
+  function setTarget() {
+    targetWords = randomWords(testType === "words" ? wordCount : 150);
+    target = targetWords.join(" ");
+  }
+  function reset() {
+    clearInterval(timer); timer = null; started = false; finished = false;
+    typed = ""; mistakes = 0; correctChars = 0; totalTyped = 0; remaining = seconds;
+    setTarget(); $("feedback").textContent = ""; $("results").classList.remove("show");
+    $("overlay").classList.remove("hidden"); $("overlayTitle").textContent = "Shift to start";
+    $("overlaySub").textContent = "Shift key dabao — typing shuru hogi.";
+    $("clockLabel").textContent = testType === "time" ? "TIME LEFT" : "WORDS LEFT";
+    render(); updateStats();
+  }
+  function render() {
+    $("words").innerHTML = "";
+    for (let i=0; i<target.length; i++) {
+      const span = document.createElement("span");
+      span.className = "letter";
+      span.textContent = target[i] === " " ? "\u00a0" : target[i];
+      if (i < typed.length) span.classList.add(typed[i].toLowerCase() === target[i].toLowerCase() ? "correct" : "wrong");
+      if (i === typed.length && !finished) span.classList.add("current");
+      $("words").appendChild(span);
+    }
+  }
+  function elapsedSeconds() { return started ? Math.max(.1, (Date.now()-startAt)/1000) : 0; }
+  function updateStats() {
+    const elapsed = elapsedSeconds();
+    $("wpm").textContent = elapsed ? Math.round((correctChars/5)/(elapsed/60)) : 0;
+    $("accuracy").textContent = totalTyped ? Math.round(correctChars/totalTyped*100)+"%" : "100%";
+    $("mistakes").textContent = mistakes;
+    $("clock").textContent = testType === "time" ? remaining+"s" : Math.max(0, targetWords.length - typed.trim().split(/\s+/).filter(Boolean).length)+" left";
+  }
+  function begin() {
+    if (started || finished) return;
+    started = true; startAt = Date.now(); $("overlay").classList.add("hidden");
+    timer = setInterval(() => {
+      if (testType === "time") {
+        remaining = Math.max(0, seconds - Math.floor((Date.now()-startAt)/1000));
+        if (remaining <= 0) { updateStats(); finish(); return; }
+      }
+      updateStats();
+    }, 100);
+  }
+  function finish() {
+    clearInterval(timer); timer = null; started = false; finished = true;
+    $("overlay").classList.remove("hidden");
+    $("overlayTitle").textContent = "Test complete!";
+    $("overlaySub").textContent = "Great effort, "+(name || "typist")+"!";
+    $("overlayButton").textContent = "Try again";
+    const accuracy = totalTyped ? Math.round(correctChars/totalTyped*100) : 100;
+    $("resultTitle").textContent = "You are best, "+(name || "champion")+"!";
+    $("resultDetails").textContent = "WPM: "+$("wpm").textContent+" · Accuracy: "+accuracy+"% · Mistakes: "+mistakes;
+    $("results").classList.add("show");
+  }
+  function startFromShift() {
+    if (finished) { reset(); begin(); showFeedback("Typing dobara shuru karein!", true, "start"); return; }
+    const wasStarted = started;
+    begin();
+    if (!wasStarted) { showFeedback("Chaliye, typing shuru karein!", true, "start"); }
+  }
+  function invalidKey() {
+    $("typingBox").style.filter = "blur(5px)";
+    $("overlay").classList.remove("hidden");
+    $("overlayTitle").textContent = "Shift to start";
+    $("overlaySub").textContent = "Sirf alphabet keys aur Shift allowed hain.";
+    showFeedback("Sirf letters allowed hain", true, "error");
+    $("typingBox").blur();
+    setTimeout(() => $("typingBox").style.filter = "", 700);
+  }
+  document.addEventListener("keydown", e => {
+    if (!$("nameGate").classList.contains("hidden")) return;
+    if (e.key === "Backspace") {
+      e.preventDefault(); showFeedback("Imran ne backspace dabane se mana kiya hai", true, "error"); return;
+    }
+    if (e.key === "Shift") { e.preventDefault(); startFromShift(); return; }
+    if (e.key === "Tab") { e.preventDefault(); reset(); return; }
+    if (e.key === "Enter") {
+      if (finished) { e.preventDefault(); reset(); }
+      return;
+    }
+    if (e.ctrlKey || e.metaKey || e.altKey) { e.preventDefault(); invalidKey(); return; }
+    if (e.key === "CapsLock") return;
+    if (/^[a-zA-Z]$/.test(e.key)) {
+      e.preventDefault();
+      if (finished) return;
+      if (!started) {
+        showFeedback("Pehle Shift dabao, phir typing shuru karo.", true, "error");
+        return;
+      }
+      if (typed.length >= target.length) {
+        if (testType === "time") { targetWords = targetWords.concat(randomWords(50)); target = targetWords.join(" "); render(); }
+        else { finish(); return; }
+      }
+      const idx = typed.length;
+      typed += e.key.toLowerCase(); totalTyped++;
+      if (e.key.toLowerCase() === target[idx].toLowerCase()) { correctChars++; sound("tap"); } else { mistakes++; sound("error"); }
+      if (testType === "words" && typed.length >= target.length) { render(); updateStats(); finish(); return; }
+      render(); updateStats(); $("feedback").textContent = "";
+      return;
+    }
+    // Space is needed to move between words; it is allowed only when the target expects a space.
+    if (e.key === " " || e.code === "Space") {
+      e.preventDefault();
+      if (!started || finished) return;
+      if (typed.length >= target.length) return;
+      const idx = typed.length;
+      if (target[idx] === " ") {
+        typed += " "; totalTyped++; correctChars++; sound("tap");
+        if (testType === "words" && typed.length >= target.length) { render(); updateStats(); finish(); return; }
+        render(); updateStats(); $("feedback").textContent = "";
+      } else {
+        mistakes++; totalTyped++; updateStats();
+        showFeedback("Space ki jagah abhi letter type karein.", true, "error");
+      }
+      return;
+    }
+    // Shift is the explicit start key. Other non-letter keys are blocked.
+    if (e.key.length === 1 || ["Delete","ArrowLeft","ArrowRight","ArrowUp","ArrowDown","Home","End","PageUp","PageDown","Escape"].includes(e.key)) {
+      e.preventDefault(); invalidKey();
+    }
+  });
+  $("nameForm").addEventListener("submit", e => {
+    e.preventDefault(); name = $("userName").value.trim();
+    if (!name) return;
+    $("nameGate").classList.add("hidden"); $("typingBox").focus(); reset();
+    showFeedback("Imran Type mein aaye hain, typing sahi karke jaayein!", true, "start");
+  });
+  document.querySelectorAll(".typeBtn").forEach(b => b.addEventListener("click", () => {
+    testType = b.dataset.type;
+    document.querySelectorAll(".typeBtn").forEach(x => x.classList.toggle("active", x===b));
+    $("timeChoices").style.display = testType === "time" ? "flex" : "none";
+    $("wordChoices").style.display = testType === "words" ? "flex" : "none";
+    reset();
+  }));
+  document.querySelectorAll(".timeBtn").forEach(b => b.addEventListener("click", () => {
+    seconds = Number(b.dataset.seconds); $("timeInput").value = seconds;
+    document.querySelectorAll(".timeBtn").forEach(x => x.classList.toggle("active", x===b));
+    reset();
+  }));
+  $("applyTime").addEventListener("click", () => {
+    const n = Number($("timeInput").value);
+    if (!Number.isInteger(n) || n < 1 || n > 3600) { $("feedback").textContent = "Timing 1 se 3600 seconds ke darmiyan set karein."; return; }
+    seconds = n; document.querySelectorAll(".timeBtn").forEach(x => x.classList.toggle("active", Number(x.dataset.seconds)===n)); reset();
+  });
+  document.querySelectorAll(".wordBtn").forEach(b => b.addEventListener("click", () => {
+    wordCount = Number(b.dataset.count); $("wordInput").value = wordCount;
+    document.querySelectorAll(".wordBtn").forEach(x => x.classList.toggle("active", x===b)); reset();
+  }));
+  $("applyWords").addEventListener("click", () => {
+    const n = Number($("wordInput").value);
+    if (!Number.isInteger(n) || n < 1 || n > 1000) { $("feedback").textContent = "Words 1 se 1000 ke darmiyan set karein."; return; }
+    wordCount = n; document.querySelectorAll(".wordBtn").forEach(x => x.classList.toggle("active", Number(x.dataset.count)===n)); reset();
+  });
+  document.querySelectorAll(".diffBtn").forEach(b => b.addEventListener("click", () => {
+    difficulty = b.dataset.diff; document.querySelectorAll(".diffBtn").forEach(x => x.classList.toggle("active", x===b)); reset();
+  }));
+  $("voiceBtn").addEventListener("click", () => {
+    voiceOn = !voiceOn; $("voiceBtn").textContent = voiceOn ? "🔊 Voice: on" : "🔇 Voice: off";
+    $("voiceBtn").classList.toggle("active", voiceOn);
+    if (!voiceOn && "speechSynthesis" in window) window.speechSynthesis.cancel();
+  });
+  $("sfxBtn").addEventListener("click", () => {
+    sfxOn = !sfxOn; $("sfxBtn").textContent = sfxOn ? "🎧 ASMR SFX: on" : "🎧 ASMR SFX: off";
+    $("sfxBtn").classList.toggle("active", sfxOn);
+    if (sfxOn) sound("tap");
+  });
+  $("themeBtn").addEventListener("click", () => document.body.classList.toggle("dark"));
+  $("restart").addEventListener("click", reset); $("restartTop").addEventListener("click", reset);
+  $("overlayButton").addEventListener("click", () => { if (finished) reset(); begin(); $("typingBox").focus(); });
+  $("typingBox").addEventListener("click", () => $("typingBox").focus());
+  // Name dialog appears first; initialize the test after name submission.
+  $("timeChoices").style.display = "flex"; $("wordChoices").style.display = "none";
+  setTarget(); render(); updateStats();
+})();
+</script>
+</body>
+</html>
